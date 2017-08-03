@@ -3,10 +3,6 @@
   "version": "0.0.1",
   "description": "sandbox",
   "main": "index.js",
-  "scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -22,5 +18,10 @@
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
+  },
+  "scripts": {
+    "build": "webpack",
+    "build-production": "set NODE_ENV=production&& webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
