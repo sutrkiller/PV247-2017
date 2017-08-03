@@ -9,7 +9,12 @@ const babelLoader = {
     }
 };
 
-const javascriptLoaders = [babelLoader];
+const eslintLoader = {
+    loader: 'eslint-loader',
+    options: {},
+}
+
+const javascriptLoaders = [babelLoader, eslintLoader];
 
 module.exports = {
     entry: './src/app.jsx',
