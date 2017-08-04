@@ -2,6 +2,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 import ReactDom from 'react-dom';
 import React from 'react';
+import { TodoList } from './todo-list/TodoList.jsx';
 
 class MyComponent extends React.Component {
     render() {
@@ -13,7 +14,7 @@ class MyComponent extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-12">To be implemented</div>
+                    <div className="col-xs-12"><TodoList/></div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
