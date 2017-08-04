@@ -37,10 +37,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                loader: 'style!css'
-            },
-            {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: javascriptLoaders
@@ -49,7 +45,35 @@ module.exports = {
                 test: /\.jsx$/,
                 exclude: /(node_modules|bower_components)/,
                 use: javascriptLoaders
-            }
+            },
+            {
+                test: /\.css$/,
+                loader: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'styles/[name].[ext]',
+                        },
+                    },
+                    {
+                        loader: 'extract-loader',
+                        options: {
+                            publicPath: '../',
+                        }
+                    },
+                    { loader: 'css-loader' }
+                ]
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        name: 'assets/[name].[ext]',
+                        limit: 10000,
+                    },
+                }
+            },
         ]
     },
     devtool: env === productionEnv ? '' : 'source-map',
