@@ -11,7 +11,7 @@ const babelLoader = {
             targets: {
                 browsers: ['last 2 versions', 'not ie <= 11']
             }
-        }]]
+        }], ['stage-2']]
     }
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { uuid } from '../Utils/uuidGenerator';
+import Immutable from 'immutable';
 
 export class TodoList extends React.Component {
 
@@ -7,7 +8,7 @@ export class TodoList extends React.Component {
         super();
 
         this.state = {
-            list: [
+            list: Immutable.List([
                 {
                     id: uuid(),
                     title: 'Wash dishes',
@@ -18,24 +19,19 @@ export class TodoList extends React.Component {
                     title: 'Kill spider',
                     description: 'All lives matter'
                 }
-            ]
+            ])
         };
-
-        this._onAddClick = this._onAddClick.bind(this);
     }
 
-    _onAddClick() {
-        // Bad practise for demo purposes
-        this.state.list.push({
-            id: uuid(),
-            title: 'New item',
-            description: ''
-        });
-
-        this.setState({
-            list: this.state.list,
-        });
-    }
+    _onAddClick = () => {
+        this.setState((previousState) => ({
+            list: previousState.list.push({
+                id: uuid(),
+                title: 'New item',
+                description: ''
+            })
+        }));
+    };
 
     render() {
         const { list } = this.state;
