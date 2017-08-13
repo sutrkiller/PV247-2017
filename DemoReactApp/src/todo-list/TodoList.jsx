@@ -3,6 +3,7 @@ import { uuid } from '../Utils/uuidGenerator';
 import Immutable from 'immutable';
 import { TodoListItem} from './TodoListItem.jsx';
 import styled from 'styled-components';
+import { TodoListEditedItem } from './TodoListEditedItem.jsx';
 
 const ButtonRow = styled.div`
     margin-top: 16px;
@@ -25,7 +26,8 @@ export class TodoList extends React.Component {
                     title: 'Kill spider',
                     description: 'All lives matter'
                 }
-            ])
+            ]),
+            editedItemId: null
         };
     }
 
@@ -39,17 +41,42 @@ export class TodoList extends React.Component {
         }));
     };
 
-    _onDelete = (deletedItemId) => {
+    _deleteItem = (deletedItemId) => {
         this.setState((previousState) => ({
             list: previousState.list.filterNot(item => item.id === deletedItemId)
         }));
+    };
+
+    _startEditing = (itemId) => {
+        this.setState({
+            editedItemId: itemId
+        });
+    };
+
+    _cancelEditing = () => {
+        this.setState({
+            editedItemId: null
+        });
     };
 
     render() {
         const { list } = this.state;
 
         const itemElements = list.map(item => {
-            return (<TodoListItem key={item.id} item={item} onDelete={this._onDelete}/>);
+            if (item.id === this.state.editedItemId) {
+                return <TodoListEditedItem
+                    key={`edited-${item.id}`}
+                    item={item}
+                    onCancel={this._cancelEditing}
+                />;
+            }
+
+            return <TodoListItem
+                key={item.id}
+                item={item}
+                onDelete={this._deleteItem}
+                onExpand={this._startEditing}
+            />;
         });
 
         return (

@@ -19,7 +19,9 @@
     "rules": {
         "indent": ["error", 4],
         "linebreak-style": "off",
-        "quotes": ["error", "single"],
+        "quotes": ["error", "single", {
+            "allowTemplateLiterals": true
+        }],
         "semi": ["error", "always"]
     }
 }
