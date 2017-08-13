@@ -50,33 +50,33 @@ const DangerAction = Action.extend`
     }
 `;
 
-export class TodoListItem extends React.Component {
-    static propTypes = {
-        item: PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            description: PropTypes.string
-        }).isRequired,
-        onDelete: PropTypes.func.isRequired
-    };
-
-    render() {
-        return (
-            <ItemPane>
-                <ActionPane>
-                    <Action>
-                        <i className="glyphicon glyphicon-menu-down" aria-hidden="true"/>
-                    </Action>
-                </ActionPane>
-                <TitlePane>
-                    {this.props.item.title}
-                    </TitlePane>
-                <ActionPane>
-                    <DangerAction onClick={() => this.props.onDelete(this.props.item.id)}>
-                        <i className="glyphicon glyphicon-remove" aria-hidden="true"/>
-                    </DangerAction>
-                </ActionPane>
-            </ItemPane>
-        );
-    }
+function TodoListItem(props) {
+    return (
+        <ItemPane>
+            <ActionPane>
+                <Action>
+                    <i className="glyphicon glyphicon-menu-down" aria-hidden="true"/>
+                </Action>
+            </ActionPane>
+            <TitlePane>
+                {props.item.title}
+                </TitlePane>
+            <ActionPane>
+                <DangerAction onClick={() => props.onDelete(props.item.id)}>
+                    <i className="glyphicon glyphicon-remove" aria-hidden="true"/>
+                </DangerAction>
+            </ActionPane>
+        </ItemPane>
+    );
 }
+
+TodoListItem.propTypes = {
+    item: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string
+    }).isRequired,
+    onDelete: PropTypes.func.isRequired
+};
+
+export {TodoListItem};
