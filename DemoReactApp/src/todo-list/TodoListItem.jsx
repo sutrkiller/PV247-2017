@@ -4,6 +4,7 @@ import {
     ItemPane,
     ItemBar,
     TitlePane,
+    Title,
     ActionPane,
     Action,
     DangerAction
@@ -19,7 +20,7 @@ function TodoListItem(props) {
                     </Action>
                 </ActionPane>
                 <TitlePane onClick={() => props.onExpand(props.item.id)}>
-                    {props.item.title}
+                    <Title>{props.item.title}</Title>
                 </TitlePane>
                 <ActionPane>
                     <DangerAction onClick={() => props.onDelete(props.item.id)}>

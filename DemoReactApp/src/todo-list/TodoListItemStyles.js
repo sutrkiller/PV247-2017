@@ -22,7 +22,14 @@ export const TitlePane = styled.div`
     padding: 0 4px;
     display: flex;
     align-items: center;
-    width: 100%;   
+    width: 100%;
+    min-width: 0;
+`;
+
+export const Title = styled.div`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `;
 
 export const ActionPane = styled.div`;
