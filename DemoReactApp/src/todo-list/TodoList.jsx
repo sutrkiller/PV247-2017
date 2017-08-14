@@ -15,21 +15,36 @@ export class TodoList extends React.Component {
         super();
 
         this.state = {
-            list: Immutable.List([
-                {
-                    id: uuid(),
-                    title: 'Wash dishes',
-                    description: 'Not again!'
-                },
-                {
-                    id: uuid(),
-                    title: 'Kill spider',
-                    description: 'All lives matter'
-                }
-            ]),
+            list: this._loadInitialTodoList(),
             editedItemId: null
         };
     }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (this.state.list !== nextState.list) {
+            localStorage.setItem('todoList', JSON.stringify(nextState.list.toJS()));
+        }
+    }
+
+    _getDefaultTodoList = () => {
+        return Immutable.List([
+            {
+                id: uuid(),
+                title: 'Wash dishes',
+                description: 'Not again!'
+            },
+            {
+                id: uuid(),
+                title: 'Kill spider',
+                description: 'All lives matter'
+            }
+        ]);
+    };
+
+    _loadInitialTodoList = () => {
+        const storedListJSON = localStorage.getItem('todoList');
+        return storedListJSON ? Immutable.List(JSON.parse(storedListJSON)) : this._getDefaultTodoList();
+    };
 
     _onAddClick = () => {
         this.setState((previousState) => ({

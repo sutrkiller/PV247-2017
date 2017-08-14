@@ -34,6 +34,14 @@ export class TodoListEditedItem extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.item !== nextProps.item) {
+            this.setState({
+                editedItem: nextProps.item,
+            });
+        }
+    }
+
     _onTitleChange = (event) => {
         const value = event.target.value;
 
