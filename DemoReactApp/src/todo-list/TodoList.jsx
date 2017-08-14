@@ -1,7 +1,7 @@
 import React from 'react';
 import { uuid } from '../Utils/uuidGenerator';
 import Immutable from 'immutable';
-import { TodoListItem} from './TodoListItem.jsx';
+import { TodoListItem } from './TodoListItem.jsx';
 import styled from 'styled-components';
 import { TodoListEditedItem } from './TodoListEditedItem.jsx';
 
@@ -59,6 +59,28 @@ export class TodoList extends React.Component {
         });
     };
 
+    _updateItem = (item) => {
+        this.setState(previousState => {
+            let newState = {
+                editedItemId: null,
+            };
+
+            const itemIndex = previousState.list.findIndex(i => i.id === item.id);
+            if (itemIndex >= 0) {
+                newState.list = previousState.list.update(itemIndex, previousItem => {
+                    // We are mutating state object. Not recommended, used for demo purposes.
+                    const updatedItem = previousItem;
+                    updatedItem.title = item.title;
+                    updatedItem.description = item.description;
+
+                    return updatedItem;
+                });
+            }
+
+            return newState;
+        });
+    };
+
     render() {
         const { list } = this.state;
 
@@ -68,6 +90,7 @@ export class TodoList extends React.Component {
                     key={`edited-${item.id}`}
                     item={item}
                     onCancel={this._cancelEditing}
+                    onSave={this._updateItem}
                 />;
             }
 

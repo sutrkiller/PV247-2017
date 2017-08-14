@@ -22,24 +22,62 @@ export class TodoListEditedItem extends React.Component {
             title: PropTypes.string.isRequired,
             description: PropTypes.string
         }).isRequired,
-        onCancel: PropTypes.func.isRequired
+        onCancel: PropTypes.func.isRequired,
+        onSave: PropTypes.func.isRequired
+    };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            editedItem: props.item
+        };
+    }
+
+    _onTitleChange = (event) => {
+        const value = event.target.value;
+
+        this.setState((previousState) => ({
+            editedItem: {
+                ...previousState.editedItem,
+                title: value
+            }
+        }));
+    };
+
+    _onDescriptionChange = (event) => {
+        const value = event.target.value;
+
+        this.setState((previousState) => ({
+            editedItem: {
+                ...previousState.editedItem,
+                description: value
+            }
+        }));
     };
 
     render() {
         return (
             <ItemPane>
                 <FormPane>
-                    <form>
+                    <form onSubmit={(e) => e.preventDefault()}>
                         <div className="form-group">
                             <label htmlFor="title">Title</label>
-                            <input type="text" className="form-control" id="title" value={this.props.item.title} />
+                            <input type="text" className="form-control" id="title" value={this.state.editedItem.title} onChange={this._onTitleChange} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="description">Description</label>
-                            <textarea className="form-control" rows="3" id="description" value={this.props.item.description} />
+                            <textarea className="form-control"
+                                      rows="3"
+                                      id="description"
+                                      value={this.state.editedItem.description}
+                                      onChange={this._onDescriptionChange} />
                         </div>
                         <ButtonRow>
-                            <button className="btn btn-primary btn-sm" onClick={e => e.preventDefault()}>Save</button>
+                            <button className="btn btn-primary btn-sm"
+                                    disabled={this.state.editedItem === this.props.item}
+                                    onClick={() => this.props.onSave(this.state.editedItem)}>Save
+                            </button>
                             <button className="btn btn-default btn-sm" onClick={this.props.onCancel}>Cancel</button>
                         </ButtonRow>
                     </form>
