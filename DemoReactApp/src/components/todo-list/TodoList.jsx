@@ -1,10 +1,8 @@
 import React from 'react';
-import { uuid } from '../Utils/uuidGenerator';
+import { uuid } from '../../utils/uuidGenerator';
 import Immutable from 'immutable';
-import { TodoListItem } from './TodoListItem.jsx';
 import styled from 'styled-components';
-import { TodoListEditedItem } from './TodoListEditedItem.jsx';
-import CSSTransition from 'react-transition-group/CSSTransition';
+import { TodoListItem } from './TodoListItem.jsx';
 
 const ButtonRow = styled.div`
     margin-top: 16px;
@@ -90,38 +88,21 @@ export class TodoList extends React.Component {
         });
     };
 
-    _renderTodoItem = (item) => {
-        const itemComponent = item.id === this.state.editedItemId ? (
-            <TodoListEditedItem
-                key={`edited-${item.id}`}
-                item={item}
-                onCancel={this._cancelEditing}
-                onSave={this._updateItem}
-            />) : (
-            <TodoListItem
-                key={item.id}
-                item={item}
-                onDelete={this._deleteItem}
-                onExpand={this._startEditing}
-                expandDisabled={!!this.state.editedItemId}
-            />);
-
-        return (
-            <CSSTransition
-                key={item.id}
-                timeout={{enter: 250, exit: 150}}
-                classNames="edited-item"
-                in={item.id === this.state.editedItemId}
-            >
-                {itemComponent}
-            </CSSTransition>
-        );
-    };
-
     render() {
         const { list } = this.state;
 
-        const itemElements = list.map(this._renderTodoItem);
+        const itemElements = list.map(item => (
+            <TodoListItem
+                key={item.id}
+                item={item}
+                isEdited={item.id === this.state.editedItemId}
+                expandDisabled={!!this.state.editedItemId}
+                onDelete={() => this._deleteItem(item.id)}
+                onExpand={() => this._startEditing(item.id)}
+                onCancel={this._cancelEditing}
+                onSave={this._updateItem}
+            />
+        ));
 
         return (
             <div>

@@ -2,7 +2,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 import ReactDom from 'react-dom';
 import React from 'react';
-import { TodoList } from './todo-list/TodoList.jsx';
+import { TodoList } from './components/todo-list/TodoList.jsx';
 
 class MyComponent extends React.Component {
     render() {
