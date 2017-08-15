@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import { TodoListItem } from './TodoListItem.jsx';
 import styled from 'styled-components';
 import { TodoListEditedItem } from './TodoListEditedItem.jsx';
+import CSSTransition from 'react-transition-group/CSSTransition';
 
 const ButtonRow = styled.div`
     margin-top: 16px;
@@ -16,7 +17,7 @@ export class TodoList extends React.Component {
 
         this.state = {
             list: this._loadInitialTodoList(),
-            editedItemId: null
+            editedItemId: null,
         };
     }
 
@@ -89,26 +90,37 @@ export class TodoList extends React.Component {
         });
     };
 
-    render() {
-        const { list } = this.state;
-
-        const itemElements = list.map(item => {
-            if (item.id === this.state.editedItemId) {
-                return <TodoListEditedItem
-                    key={`edited-${item.id}`}
-                    item={item}
-                    onCancel={this._cancelEditing}
-                    onSave={this._updateItem}
-                />;
-            }
-
-            return <TodoListItem
+    _renderTodoItem = (item) => {
+        const itemComponent = item.id === this.state.editedItemId ? (
+            <TodoListEditedItem
+                key={`edited-${item.id}`}
+                item={item}
+                onCancel={this._cancelEditing}
+                onSave={this._updateItem}
+            />) : (
+            <TodoListItem
                 key={item.id}
                 item={item}
                 onDelete={this._deleteItem}
                 onExpand={this._startEditing}
-            />;
-        });
+            />);
+
+        return (
+            <CSSTransition
+                key={item.id}
+                timeout={{enter: 250, exit: 150}}
+                classNames="edited-item"
+                in={item.id === this.state.editedItemId}
+            >
+                {itemComponent}
+            </CSSTransition>
+        );
+    };
+
+    render() {
+        const { list } = this.state;
+
+        const itemElements = list.map(this._renderTodoItem).toJS();
 
         return (
             <div>
@@ -124,7 +136,7 @@ export class TodoList extends React.Component {
                             className="btn btn-primary"
                             onClick={this._onAddClick}
                         >
-                            Add
+                            Create new
                         </button>
                     </div>
                 </ButtonRow>

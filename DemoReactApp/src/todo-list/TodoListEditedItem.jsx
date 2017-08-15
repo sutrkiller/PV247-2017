@@ -82,11 +82,21 @@ export class TodoListEditedItem extends React.PureComponent {
                                       onChange={this._onDescriptionChange} />
                         </div>
                         <ButtonRow>
-                            <button className="btn btn-primary btn-sm"
-                                    disabled={this.state.editedItem === this.props.item}
-                                    onClick={() => this.props.onSave(this.state.editedItem)}>Save
+                            <button
+                                type="button"
+                                className="btn btn-primary btn-sm"
+                                disabled={this.state.editedItem === this.props.item}
+                                onClick={() => this.props.onSave(this.state.editedItem)}
+                            >
+                                Save
                             </button>
-                            <button className="btn btn-default btn-sm" onClick={this.props.onCancel}>Cancel</button>
+                            <button
+                                type="button"
+                                className="btn btn-default btn-sm"
+                                onClick={this.props.onCancel}
+                            >
+                                Cancel
+                            </button>
                         </ButtonRow>
                     </form>
                 </FormPane>
