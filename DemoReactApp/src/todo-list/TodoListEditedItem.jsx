@@ -15,7 +15,7 @@ const FormPane = styled.div`
     padding: 8px;
 `;
 
-export class TodoListEditedItem extends React.Component {
+export class TodoListEditedItem extends React.PureComponent {
     static propTypes = {
         item: PropTypes.shape({
             id: PropTypes.string.isRequired,

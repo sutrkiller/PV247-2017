@@ -82,14 +82,7 @@ export class TodoList extends React.Component {
 
             const itemIndex = previousState.list.findIndex(i => i.id === item.id);
             if (itemIndex >= 0) {
-                newState.list = previousState.list.update(itemIndex, previousItem => {
-                    // We are mutating state object. Not recommended, used for demo purposes.
-                    const updatedItem = previousItem;
-                    updatedItem.title = item.title;
-                    updatedItem.description = item.description;
-
-                    return updatedItem;
-                });
+                newState.list = previousState.list.update(itemIndex, previousItem => ({...previousItem, ...item}));
             }
 
             return newState;
