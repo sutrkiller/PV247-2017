@@ -32,12 +32,12 @@ export const ItemBar = styled.div`
     display: flex;
     
     &:hover {
-        background-color: #f5f5f5;
+        background-color: ${props => props.disabled ? 'inherit' : '#f5f5f5'};
     }
 `;
 
 export const TitlePane = styled.div`
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'default' : 'pointer'};
     padding: 0 4px;
     display: flex;
     align-items: center;
@@ -61,18 +61,18 @@ export const Action = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    cursor: pointer;
-    color: #777;
+    cursor: ${props => props.disabled ? 'default' : 'pointer'};
+    color: ${props => props.disabled ? '#DDD' : '#777'};
     
     &:hover {
-        background-color: #eee;
-        color: #555;
+        background-color: ${props => props.disabled ? 'inherit' : '#eee'};
+        color: ${props => props.disabled ? '#BBB' : '#555'};
     }
 `;
 
 export const DangerAction = Action.extend`
      &:hover {
-        background-color: #d9534f;
-        color: #FFF;
+        background-color: ${props => props.disabled ? 'inherit' : '#d9534f'};
+        color: ${props => props.disabled ? '#BBB' : '#FFF'};
     }
 `;

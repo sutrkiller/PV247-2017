@@ -103,6 +103,7 @@ export class TodoList extends React.Component {
                 item={item}
                 onDelete={this._deleteItem}
                 onExpand={this._startEditing}
+                expandDisabled={!!this.state.editedItemId}
             />);
 
         return (
@@ -120,7 +121,7 @@ export class TodoList extends React.Component {
     render() {
         const { list } = this.state;
 
-        const itemElements = list.map(this._renderTodoItem).toJS();
+        const itemElements = list.map(this._renderTodoItem);
 
         return (
             <div>

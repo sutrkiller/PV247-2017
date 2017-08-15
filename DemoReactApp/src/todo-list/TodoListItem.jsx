@@ -13,13 +13,13 @@ import {
 function TodoListItem(props) {
     return (
         <ItemPane>
-            <ItemBar>
+            <ItemBar disabled={props.expandDisabled}>
                 <ActionPane>
-                    <Action onClick={() => props.onExpand(props.item.id)}>
+                    <Action disabled={props.expandDisabled} onClick={props.expandDisabled ? null : () => props.onExpand(props.item.id)}>
                         <i className="glyphicon glyphicon-menu-down" aria-hidden="true" />
                     </Action>
                 </ActionPane>
-                <TitlePane onClick={() => props.onExpand(props.item.id)}>
+                <TitlePane disabled={props.expandDisabled} onClick={props.expandDisabled ? null : () => props.onExpand(props.item.id)}>
                     <Title>{props.item.title}</Title>
                 </TitlePane>
                 <ActionPane>
@@ -39,7 +39,8 @@ TodoListItem.propTypes = {
         description: PropTypes.string
     }).isRequired,
     onDelete: PropTypes.func.isRequired,
-    onExpand: PropTypes.func.isRequired
+    onExpand: PropTypes.func.isRequired,
+    expandDisabled: PropTypes.bool,
 };
 
 export { TodoListItem };
