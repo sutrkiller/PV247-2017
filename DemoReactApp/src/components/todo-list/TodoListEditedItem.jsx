@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormPane, ButtonRow } from './TodoListEditedItemStyles';
+import { FormPane, ButtonRow } from './TodoListEditedItem.styles';
 
 export class TodoListEditedItem extends React.PureComponent {
     static propTypes = {
@@ -9,46 +9,11 @@ export class TodoListEditedItem extends React.PureComponent {
             title: PropTypes.string.isRequired,
             description: PropTypes.string
         }).isRequired,
+        saveDisabled: PropTypes.bool,
+        onTitleChange: PropTypes.func.isRequired,
+        onDescriptionChange: PropTypes.func.isRequired,
         onCancel: PropTypes.func.isRequired,
         onSave: PropTypes.func.isRequired
-    };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            editedItem: props.item
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props.item !== nextProps.item) {
-            this.setState({
-                editedItem: nextProps.item,
-            });
-        }
-    }
-
-    _onTitleChange = (event) => {
-        const value = event.target.value;
-
-        this.setState((previousState) => ({
-            editedItem: {
-                ...previousState.editedItem,
-                title: value
-            }
-        }));
-    };
-
-    _onDescriptionChange = (event) => {
-        const value = event.target.value;
-
-        this.setState((previousState) => ({
-            editedItem: {
-                ...previousState.editedItem,
-                description: value
-            }
-        }));
     };
 
     render() {
@@ -57,22 +22,22 @@ export class TodoListEditedItem extends React.PureComponent {
                 <form onSubmit={(e) => e.preventDefault()}>
                     <div className="form-group">
                         <label htmlFor="title">Title</label>
-                        <input type="text" className="form-control" id="title" value={this.state.editedItem.title} onChange={this._onTitleChange} />
+                        <input type="text" className="form-control" id="title" value={this.props.item.title} onChange={this.props.onTitleChange} />
                     </div>
                     <div className="form-group">
                         <label htmlFor="description">Description</label>
                         <textarea className="form-control"
                                   rows="3"
                                   id="description"
-                                  value={this.state.editedItem.description}
-                                  onChange={this._onDescriptionChange} />
+                                  value={this.props.item.description}
+                                  onChange={this.props.onDescriptionChange} />
                     </div>
                     <ButtonRow>
                         <button
                             type="button"
                             className="btn btn-primary btn-sm"
-                            disabled={this.state.editedItem === this.props.item}
-                            onClick={() => this.props.onSave(this.state.editedItem)}
+                            disabled={this.props.saveDisabled}
+                            onClick={this.props.onSave}
                         >
                             Save
                         </button>

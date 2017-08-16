@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CSSTransition from 'react-transition-group/CSSTransition';
-import { ItemPane } from './TodoListItemStyles';
-import { TodoListBarItem } from './TodoListBarItem.jsx';
-import { TodoListEditedItem } from './TodoListEditedItem.jsx';
+import { ItemPane } from './TodoListItem.styles';
+import { TodoListBarItem } from '../../containers/todo-list/TodoListBarItem.jsx';
+import { TodoListEditedItem } from '../../containers/todo-list/TodoListEditedItem.jsx';
 
 function TodoListItem(props) {
     return (

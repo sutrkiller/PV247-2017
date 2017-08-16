@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DragSource, DropTarget } from 'react-dnd';
 import {
     ItemBar,
     TitlePane,
@@ -9,41 +8,7 @@ import {
     Action,
     DangerAction,
     GrabAction
-} from './TodoListBarItemStyles';
-
-const todoItemDragSourceSpecs = {
-    beginDrag(props) {
-        return { draggedItemId: props.item.id };
-    },
-
-    canDrag(props) {
-        return !props.reorderDisabled;
-    }
-};
-
-function collectDragSourceProps(connect) {
-    return {
-        connectDragSource: connect.dragSource(),
-        connectDragPreview: connect.dragPreview(),
-    };
-}
-
-const todoItemDropTargetSpecs = {
-    hover(props, monitor) {
-        const draggedItemId = monitor.getItem().draggedItemId;
-        const hoveredItemId = props.item.id;
-
-        if (draggedItemId !== hoveredItemId) {
-            props.onReorder(draggedItemId, hoveredItemId);
-        }
-    }
-};
-
-function collectDropTargetProps(connect) {
-    return {
-        connectDropTarget: connect.dropTarget()
-    };
-}
+} from './TodoListBarItem.styles';
 
 function ConnectDnd(props) {
     return props.connectFunc(
@@ -104,6 +69,4 @@ TodoListBarItem.propTypes = {
     connectDropTarget: PropTypes.func.isRequired,
 };
 
-const DragTodoListBarItem = DragSource('TodoItem', todoItemDragSourceSpecs, collectDragSourceProps)(
-    DropTarget('TodoItem', todoItemDropTargetSpecs, collectDropTargetProps)(TodoListBarItem));
-export { DragTodoListBarItem as TodoListBarItem };
+export { TodoListBarItem };
