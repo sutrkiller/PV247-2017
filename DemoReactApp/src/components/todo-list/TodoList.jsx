@@ -2,13 +2,15 @@ import React from 'react';
 import { uuid } from '../../utils/uuidGenerator';
 import Immutable from 'immutable';
 import styled from 'styled-components';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { TodoListItem } from './TodoListItem.jsx';
 
 const ButtonRow = styled.div`
     margin-top: 16px;
 `;
 
-export class TodoList extends React.Component {
+class TodoList extends React.Component {
 
     constructor() {
         super();
@@ -88,6 +90,23 @@ export class TodoList extends React.Component {
         });
     };
 
+    _moveItem = (moveItemId, destinationItemId) => {
+        this.setState(previousState => {
+            const moveItemIndex = previousState.list.findIndex(item => item.id === moveItemId);
+            const destinationItemIndex = previousState.list.findIndex(item => item.id === destinationItemId);
+
+            if ((moveItemIndex >= 0) && (destinationItemIndex >= 0)) {
+                const movedItem = previousState.list.get(moveItemIndex);
+
+                return {
+                    list: previousState.list.delete(moveItemIndex).insert(destinationItemIndex, movedItem)
+                };
+            }
+
+            return {};
+        });
+    };
+
     render() {
         const { list } = this.state;
 
@@ -97,10 +116,12 @@ export class TodoList extends React.Component {
                 item={item}
                 isEdited={item.id === this.state.editedItemId}
                 expandDisabled={!!this.state.editedItemId}
+                reorderDisabled={!!this.state.editedItemId}
                 onDelete={() => this._deleteItem(item.id)}
                 onExpand={() => this._startEditing(item.id)}
                 onCancel={this._cancelEditing}
                 onSave={this._updateItem}
+                onReorder={this._moveItem}
             />
         ));
 
@@ -126,3 +147,6 @@ export class TodoList extends React.Component {
         );
     }
 }
+
+const DndTodoList = DragDropContext(HTML5Backend)(TodoList);
+export { DndTodoList as TodoList };

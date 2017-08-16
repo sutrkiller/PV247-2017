@@ -48,3 +48,16 @@ export const DangerAction = Action.extend`
         color: ${props => props.disabled ? '#BBB' : '#FFF'};
     }
 `;
+
+export const GrabAction = Action.extend`
+    cursor: ${props => props.disabled ? 'default' : 'grab'};
+    
+    & > i {
+        left: -0.33em;
+    }
+    
+    & > i:before {
+        content: "\\E235 \\E235";
+        letter-spacing: -0.66em;
+    }   
+`;

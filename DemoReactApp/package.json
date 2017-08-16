@@ -26,6 +26,8 @@
     "immutable": "^3.8.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-dnd": "^2.4.0",
+    "react-dnd-html5-backend": "^2.4.1",
     "react-dom": "^15.6.1",
     "react-transition-group": "^2.2.0",
     "styled-components": "^2.1.2",

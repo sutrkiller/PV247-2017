@@ -23,10 +23,13 @@ function TodoListItem(props) {
                     <TodoListBarItem
                         key={props.item.id}
                         item={props.item}
+                        expandDisabled={props.expandDisabled}
+                        reorderDisabled={props.reorderDisabled}
                         onDelete={props.onDelete}
                         onExpand={props.onExpand}
-                        expandDisabled={props.expandDisabled}
-                    />)}
+                        onReorder={props.onReorder}
+                    />
+                )}
             </ItemPane>
         </CSSTransition>
     );
@@ -40,10 +43,12 @@ TodoListItem.propTypes = {
     }).isRequired,
     isEdited: PropTypes.bool,
     expandDisabled: PropTypes.bool,
+    reorderDisabled: PropTypes.bool,
     onDelete: PropTypes.func.isRequired,
     onExpand: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired
+    onSave: PropTypes.func.isRequired,
+    onReorder: PropTypes.func.isRequired,
 };
 
 export { TodoListItem };
