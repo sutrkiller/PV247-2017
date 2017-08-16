@@ -13,6 +13,7 @@ class TodoList extends React.Component {
         this.state = {
             list: this._loadInitialTodoList(),
             editedItemId: null,
+            createNewFormVisible: false,
         };
     }
 
@@ -42,13 +43,22 @@ class TodoList extends React.Component {
         return storedListJSON ? Immutable.List(JSON.parse(storedListJSON)) : this._getDefaultTodoList();
     };
 
-    _addItem = () => {
+    _showCreateNewForm = () => {
+        this.setState({
+            createNewFormVisible: true,
+        });
+    };
+
+    _hideCreateNewForm = () => {
+        this.setState({
+            createNewFormVisible: false,
+        });
+    };
+
+    _createNewItem = (newItem) => {
         this.setState((previousState) => ({
-            list: previousState.list.push({
-                id: uuid(),
-                title: 'New item',
-                description: ''
-            })
+            list: previousState.list.push({...newItem}),
+            createNewFormVisible: false,
         }));
     };
 
@@ -107,12 +117,15 @@ class TodoList extends React.Component {
             <TodoListComponent
                 list={this.state.list}
                 editedItemId={this.state.editedItemId}
+                createNewFormVisible={this.state.createNewFormVisible}
                 onDelete={this._deleteItem}
                 onExpand={this._startEditing}
                 onCancel={this._cancelEditing}
                 onSave={this._updateItem}
                 onReorder={this._moveItem}
-                onAdd={this._addItem}
+                onCreateNewClick={this._showCreateNewForm}
+                onCreateCancel={this._hideCreateNewForm}
+                onCreate={this._createNewItem}
             />
         );
     }

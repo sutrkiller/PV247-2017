@@ -9,8 +9,9 @@ export class TodoListEditedItem extends React.PureComponent {
             title: PropTypes.string.isRequired,
             description: PropTypes.string
         }).isRequired,
+        submitButtonText: PropTypes.string.isRequired,
         onCancel: PropTypes.func.isRequired,
-        onSave: PropTypes.func.isRequired
+        onSubmit: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -55,11 +56,12 @@ export class TodoListEditedItem extends React.PureComponent {
         return (
             <TodoListEditedItemComponent
                 item={this.state.editedItem}
-                saveDisabled={this.state.editedItem === this.props.item}
+                submitDisabled={this.state.editedItem === this.props.item}
+                submitButtonText={this.props.submitButtonText}
                 onTitleChange={this._onTitleChange}
                 onDescriptionChange={this._onDescriptionChange}
                 onCancel={this.props.onCancel}
-                onSave={() => this.props.onSave(this.state.editedItem)}
+                onSubmit={() => this.props.onSubmit(this.state.editedItem)}
             />
         );
     }

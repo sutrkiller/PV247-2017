@@ -9,6 +9,7 @@ import {
     DangerAction,
     GrabAction
 } from './TodoListBarItem.styles';
+import { ItemPane} from './TodoListItem.styles';
 
 function ConnectDnd(props) {
     return props.connectFunc(
@@ -24,30 +25,32 @@ ConnectDnd.prototypes = {
 
 function TodoListBarItem(props) {
     return (
-        <ConnectDnd connectFunc={props.connectDropTarget}>
-            <ConnectDnd connectFunc={props.connectDragPreview}>
-                <ItemBar disabled={props.expandDisabled}>
-                    <ActionPane>
-                        <ConnectDnd connectFunc={props.connectDragSource}>
-                            <GrabAction disabled={props.reorderDisabled}>
-                                <i className="glyphicon" aria-hidden="true" />
-                            </GrabAction>
-                        </ConnectDnd>
-                        <Action disabled={props.expandDisabled} onClick={props.expandDisabled ? null : props.onExpand}>
-                            <i className="glyphicon glyphicon-menu-down" aria-hidden="true" />
-                        </Action>
-                    </ActionPane>
-                    <TitlePane disabled={props.expandDisabled} onClick={props.expandDisabled ? null : props.onExpand}>
-                        <Title>{props.item.title}</Title>
-                    </TitlePane>
-                    <ActionPane>
-                        <DangerAction onClick={() => props.onDelete()}>
-                            <i className="glyphicon glyphicon-remove" aria-hidden="true" />
-                        </DangerAction>
-                    </ActionPane>
-                </ItemBar>
+        <ItemPane>
+            <ConnectDnd connectFunc={props.connectDropTarget}>
+                <ConnectDnd connectFunc={props.connectDragPreview}>
+                    <ItemBar disabled={props.expandDisabled}>
+                        <ActionPane>
+                            <ConnectDnd connectFunc={props.connectDragSource}>
+                                <GrabAction disabled={props.reorderDisabled}>
+                                    <i className="glyphicon" aria-hidden="true" />
+                                </GrabAction>
+                            </ConnectDnd>
+                            <Action disabled={props.expandDisabled} onClick={props.expandDisabled ? null : props.onExpand}>
+                                <i className="glyphicon glyphicon-menu-down" aria-hidden="true" />
+                            </Action>
+                        </ActionPane>
+                        <TitlePane disabled={props.expandDisabled} onClick={props.expandDisabled ? null : props.onExpand}>
+                            <Title>{props.item.title}</Title>
+                        </TitlePane>
+                        <ActionPane>
+                            <DangerAction onClick={() => props.onDelete()}>
+                                <i className="glyphicon glyphicon-remove" aria-hidden="true" />
+                            </DangerAction>
+                        </ActionPane>
+                    </ItemBar>
+                </ConnectDnd>
             </ConnectDnd>
-        </ConnectDnd>
+        </ItemPane>
     );
 }
 

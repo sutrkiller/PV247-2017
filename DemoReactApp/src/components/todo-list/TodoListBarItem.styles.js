@@ -33,7 +33,7 @@ export const Action = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    cursor: ${props => props.disabled ? 'default' : 'pointer'};
+    cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
     color: ${props => props.disabled ? '#DDD' : '#777'};
     
     &:hover {
@@ -50,7 +50,7 @@ export const DangerAction = Action.extend`
 `;
 
 export const GrabAction = Action.extend`
-    cursor: ${props => props.disabled ? 'default' : 'grab'};
+    cursor: ${props => props.disabled ? 'not-allowed' : 'grab'};
     
     & > i {
         left: -0.33em;
