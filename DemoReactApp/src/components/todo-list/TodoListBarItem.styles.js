@@ -38,14 +38,14 @@ export const Action = styled.div`
     
     &:hover {
         background-color: ${props => props.disabled ? 'inherit' : '#eee'};
-        color: ${props => props.disabled ? '#BBB' : '#555'};
+        color: ${props => props.disabled ? '#DDD' : '#555'};
     }
 `;
 
 export const DangerAction = Action.extend`
     &:hover {
         background-color: ${props => props.disabled ? 'inherit' : '#d9534f'};
-        color: ${props => props.disabled ? '#BBB' : '#FFF'};
+        color: ${props => props.disabled ? '#DDD' : '#FFF'};
     }
 `;
 

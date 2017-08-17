@@ -14,6 +14,7 @@ class TodoList extends React.Component {
             list: this._loadInitialTodoList(),
             editedItemId: null,
             createNewFormVisible: false,
+            isDragging: false,
         };
     }
 
@@ -112,12 +113,25 @@ class TodoList extends React.Component {
         });
     };
 
+    _itemDragStarted = () => {
+        this.setState({
+            isDragging: true,
+        });
+    };
+
+    _itemDragEnded = () => {
+        this.setState({
+            isDragging: false,
+        });
+    };
+
     render() {
         return (
             <TodoListComponent
                 list={this.state.list}
                 editedItemId={this.state.editedItemId}
                 createNewFormVisible={this.state.createNewFormVisible}
+                isDragging={this.state.isDragging}
                 onDelete={this._deleteItem}
                 onExpand={this._startEditing}
                 onCancel={this._cancelEditing}
@@ -126,6 +140,8 @@ class TodoList extends React.Component {
                 onCreateNewClick={this._showCreateNewForm}
                 onCreateCancel={this._hideCreateNewForm}
                 onCreate={this._createNewItem}
+                onDragStarted={this._itemDragStarted}
+                onDragEnded={this._itemDragEnded}
             />
         );
     }

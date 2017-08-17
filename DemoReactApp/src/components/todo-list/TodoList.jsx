@@ -24,11 +24,13 @@ function TodoList(props) {
                     <TodoListBarItem
                         key={item.id}
                         item={item}
-                        expandDisabled={!!props.editedItemId}
-                        reorderDisabled={!!props.editedItemId}
+                        expandDisabled={!!props.editedItemId || props.isDragging}
+                        reorderDisabled={!!props.editedItemId ||  props.isDragging}
                         onDelete={() => props.onDelete(item.id)}
                         onExpand={() => props.onExpand(item.id)}
                         onReorder={props.onReorder}
+                        onDragStarted={props.onDragStarted}
+                        onDragEnded={props.onDragEnded}
                     />
                 </CSSTransition>
             )
@@ -71,6 +73,7 @@ TodoList.propTypes = {
     list: PropTypes.instanceOf(Immutable.List).isRequired,
     editedItemId: PropTypes.string,
     createNewFormVisible: PropTypes.bool,
+    isDragging: PropTypes.bool,
     onDelete: PropTypes.func.isRequired,
     onExpand: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
@@ -78,7 +81,9 @@ TodoList.propTypes = {
     onReorder: PropTypes.func.isRequired,
     onCreateNewClick: PropTypes.func.isRequired,
     onCreateCancel: PropTypes.func.isRequired,
-    onCreate: PropTypes.func.isRequired
+    onCreate: PropTypes.func.isRequired,
+    onDragStarted: PropTypes.func.isRequired,
+    onDragEnded: PropTypes.func.isRequired
 };
 
 export { TodoList };

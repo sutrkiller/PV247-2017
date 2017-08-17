@@ -4,7 +4,12 @@ import {TodoListBarItem as TodoListBarItemComponent} from '../../components/todo
 
 const todoItemDragSourceSpecs = {
     beginDrag(props) {
+        props.onDragStarted();
         return { draggedItemId: props.item.id };
+    },
+
+    endDrag(props) {
+        props.onDragEnded();
     },
 
     canDrag(props) {
@@ -49,7 +54,9 @@ DndTodoListBarItem.propTypes = {
     reorderDisabled: PropTypes.bool,
     onDelete: PropTypes.func.isRequired,
     onExpand: PropTypes.func.isRequired,
-    onReorder: PropTypes.func.isRequired
+    onReorder: PropTypes.func.isRequired,
+    onDragStarted: PropTypes.func.isRequired,
+    onDragEnded: PropTypes.func.isRequired
 };
 
 export { DndTodoListBarItem as TodoListBarItem };
