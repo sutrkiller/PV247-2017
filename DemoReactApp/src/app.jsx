@@ -2,7 +2,16 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 import ReactDom from 'react-dom';
 import React from 'react';
+import { createStore } from 'redux';
 import { TodoList } from './containers/todo-list/TodoList.jsx';
+import { app } from './reducers/app';
+import { getInitialItems } from './utils/getInitialItems';
+
+const initialState = { itemsList: getInitialItems() };
+const store = createStore(app, initialState);
+
+// eslint-disable-next-line no-console
+console.log('Initial state: ', store.getState());
 
 class MyComponent extends React.Component {
     render() {
@@ -14,7 +23,7 @@ class MyComponent extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-xs-12"><TodoList/></div>
+                    <div className="col-xs-12"><TodoList /></div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
@@ -28,4 +37,4 @@ class MyComponent extends React.Component {
     }
 }
 
-ReactDom.render(<MyComponent/>, document.getElementById('app'));
+ReactDom.render(<MyComponent />, document.getElementById('app'));

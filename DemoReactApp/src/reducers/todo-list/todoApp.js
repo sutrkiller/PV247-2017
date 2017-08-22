@@ -1,5 +1,6 @@
+import { combineReducers } from 'redux';
 import { itemsList } from './itemsList';
 
-export const totoApp = (prevState, action) => ({
-    itemsList: itemsList(prevState.itemsList, action)
+export const todoApp = combineReducers({
+    itemsList,
 });
