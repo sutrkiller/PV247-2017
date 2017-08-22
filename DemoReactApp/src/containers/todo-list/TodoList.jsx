@@ -1,5 +1,5 @@
 import React from 'react';
-import { uuid } from '../../utils/uuidGenerator';
+import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -7,42 +7,31 @@ import { TodoList as TodoListComponent } from '../../components/todo-list/TodoLi
 
 class TodoList extends React.Component {
 
-    constructor() {
-        super();
+    static propTypes = {
+        list: PropTypes.instanceOf(Immutable.List).isRequired,
+        onCreateNew: PropTypes.func.isRequired,
+        onUpdate: PropTypes.func.isRequired,
+        onDelete: PropTypes.func.isRequired,
+        onMove: PropTypes.func.isRequired,
+    };
+
+    constructor(props) {
+        super(props);
 
         this.state = {
-            list: this._loadInitialTodoList(),
             editedItemId: null,
             createNewFormVisible: false,
             isDragging: false,
         };
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        if (this.state.list !== nextState.list) {
-            localStorage.setItem('todoList', JSON.stringify(nextState.list.toJS()));
+    componentWillUpdate(nextProps) {
+        if (this.props.list !== nextProps.list) {
+            // note that this should be done in action creator instead
+            // we will handle this in following commits
+            localStorage.setItem('todoList', JSON.stringify(nextProps.list.toJS()));
         }
     }
-
-    _getDefaultTodoList = () => {
-        return Immutable.List([
-            {
-                id: uuid(),
-                title: 'Wash dishes',
-                description: 'Not again!'
-            },
-            {
-                id: uuid(),
-                title: 'Kill spider',
-                description: 'All lives matter'
-            }
-        ]);
-    };
-
-    _loadInitialTodoList = () => {
-        const storedListJSON = localStorage.getItem('todoList');
-        return storedListJSON ? Immutable.List(JSON.parse(storedListJSON)) : this._getDefaultTodoList();
-    };
 
     _showCreateNewForm = () => {
         this.setState({
@@ -57,16 +46,8 @@ class TodoList extends React.Component {
     };
 
     _createNewItem = (newItem) => {
-        this.setState((previousState) => ({
-            list: previousState.list.push({...newItem}),
-            createNewFormVisible: false,
-        }));
-    };
-
-    _deleteItem = (deletedItemId) => {
-        this.setState((previousState) => ({
-            list: previousState.list.filterNot(item => item.id === deletedItemId)
-        }));
+        this.props.onCreateNew(newItem);
+        this.setState(() => ({ createNewFormVisible: false }));
     };
 
     _startEditing = (itemId) => {
@@ -82,35 +63,8 @@ class TodoList extends React.Component {
     };
 
     _updateItem = (item) => {
-        this.setState(previousState => {
-            let newState = {
-                editedItemId: null,
-            };
-
-            const itemIndex = previousState.list.findIndex(i => i.id === item.id);
-            if (itemIndex >= 0) {
-                newState.list = previousState.list.update(itemIndex, previousItem => ({...previousItem, ...item}));
-            }
-
-            return newState;
-        });
-    };
-
-    _moveItem = (moveItemId, destinationItemId) => {
-        this.setState(previousState => {
-            const moveItemIndex = previousState.list.findIndex(item => item.id === moveItemId);
-            const destinationItemIndex = previousState.list.findIndex(item => item.id === destinationItemId);
-
-            if ((moveItemIndex >= 0) && (destinationItemIndex >= 0)) {
-                const movedItem = previousState.list.get(moveItemIndex);
-
-                return {
-                    list: previousState.list.delete(moveItemIndex).insert(destinationItemIndex, movedItem)
-                };
-            }
-
-            return {};
-        });
+        this.props.onUpdate(item);
+        this._cancelEditing();
     };
 
     _itemDragStarted = () => {
@@ -128,15 +82,15 @@ class TodoList extends React.Component {
     render() {
         return (
             <TodoListComponent
-                list={this.state.list}
+                list={this.props.list}
                 editedItemId={this.state.editedItemId}
                 createNewFormVisible={this.state.createNewFormVisible}
                 isDragging={this.state.isDragging}
-                onDelete={this._deleteItem}
+                onDelete={this.props.onDelete}
                 onExpand={this._startEditing}
                 onCancel={this._cancelEditing}
                 onSave={this._updateItem}
-                onReorder={this._moveItem}
+                onReorder={this.props.onMove}
                 onCreateNewClick={this._showCreateNewForm}
                 onCreateCancel={this._hideCreateNewForm}
                 onCreate={this._createNewItem}
