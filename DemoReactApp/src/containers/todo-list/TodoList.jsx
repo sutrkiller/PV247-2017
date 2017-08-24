@@ -9,17 +9,19 @@ class TodoList extends React.Component {
 
     static propTypes = {
         list: PropTypes.instanceOf(Immutable.List).isRequired,
+        editedItemId: PropTypes.string,
         onCreateNew: PropTypes.func.isRequired,
         onUpdate: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
         onMove: PropTypes.func.isRequired,
+        onStartEditing: PropTypes.func.isRequired,
+        onCancelEditing: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            editedItemId: null,
             createNewFormVisible: false,
             isDragging: false,
         };
@@ -50,23 +52,6 @@ class TodoList extends React.Component {
         this.setState(() => ({ createNewFormVisible: false }));
     };
 
-    _startEditing = (itemId) => {
-        this.setState({
-            editedItemId: itemId
-        });
-    };
-
-    _cancelEditing = () => {
-        this.setState({
-            editedItemId: null
-        });
-    };
-
-    _updateItem = (item) => {
-        this.props.onUpdate(item);
-        this._cancelEditing();
-    };
-
     _itemDragStarted = () => {
         this.setState({
             isDragging: true,
@@ -83,13 +68,13 @@ class TodoList extends React.Component {
         return (
             <TodoListComponent
                 list={this.props.list}
-                editedItemId={this.state.editedItemId}
+                editedItemId={this.props.editedItemId}
                 createNewFormVisible={this.state.createNewFormVisible}
                 isDragging={this.state.isDragging}
                 onDelete={this.props.onDelete}
-                onExpand={this._startEditing}
-                onCancel={this._cancelEditing}
-                onSave={this._updateItem}
+                onExpand={this.props.onStartEditing}
+                onCancel={this.props.onCancelEditing}
+                onSave={this.props.onUpdate}
                 onReorder={this.props.onMove}
                 onCreateNewClick={this._showCreateNewForm}
                 onCreateCancel={this._hideCreateNewForm}

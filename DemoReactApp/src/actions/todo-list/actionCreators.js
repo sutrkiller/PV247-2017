@@ -1,8 +1,10 @@
-import {uuid} from '../../utils/uuidGenerator';
+import { uuid } from '../../utils/uuidGenerator';
 import {
+    TODO_LIST_ITEM_CANCEL_EDITING,
     TODO_LIST_ITEM_CREATE,
     TODO_LIST_ITEM_DELETE,
     TODO_LIST_ITEM_MOVE,
+    TODO_LIST_ITEM_START_EDITING,
     TODO_LIST_ITEM_UPDATE
 } from '../../constants/actionTypes';
 
@@ -40,3 +42,13 @@ export const moveItem = (moveItemId, destinationItemId) => ({
     }
 });
 
+export const startEditingItem = (id) => ({
+    type: TODO_LIST_ITEM_START_EDITING,
+    payload: {
+        id,
+    }
+});
+
+export const cancelEditingItem = () => ({
+    type: TODO_LIST_ITEM_CANCEL_EDITING,
+});
