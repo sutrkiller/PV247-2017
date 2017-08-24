@@ -11,6 +11,7 @@ class TodoList extends React.Component {
         list: PropTypes.instanceOf(Immutable.List).isRequired,
         editedItemId: PropTypes.string,
         isCreateNewFormOpen: PropTypes.bool.isRequired,
+        isDragging: PropTypes.bool.isRequired,
         onCreateNew: PropTypes.func.isRequired,
         onUpdate: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
@@ -19,15 +20,9 @@ class TodoList extends React.Component {
         onCancelEditing: PropTypes.func.isRequired,
         onCreateNewClick: PropTypes.func.isRequired,
         onCreateNewCancel: PropTypes.func.isRequired,
+        onDragStarted: PropTypes.func.isRequired,
+        onDragEnded: PropTypes.func.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isDragging: false,
-        };
-    }
 
     componentWillUpdate(nextProps) {
         if (this.props.list !== nextProps.list) {
@@ -37,25 +32,13 @@ class TodoList extends React.Component {
         }
     }
 
-    _itemDragStarted = () => {
-        this.setState({
-            isDragging: true,
-        });
-    };
-
-    _itemDragEnded = () => {
-        this.setState({
-            isDragging: false,
-        });
-    };
-
     render() {
         return (
             <TodoListComponent
                 list={this.props.list}
                 editedItemId={this.props.editedItemId}
                 createNewFormVisible={this.props.isCreateNewFormOpen}
-                isDragging={this.state.isDragging}
+                isDragging={this.props.isDragging}
                 onDelete={this.props.onDelete}
                 onExpand={this.props.onStartEditing}
                 onCancel={this.props.onCancelEditing}
@@ -64,8 +47,8 @@ class TodoList extends React.Component {
                 onCreateNewClick={this.props.onCreateNewClick}
                 onCreateCancel={this.props.onCreateNewCancel}
                 onCreate={this.props.onCreateNew}
-                onDragStarted={this._itemDragStarted}
-                onDragEnded={this._itemDragEnded}
+                onDragStarted={this.props.onDragStarted}
+                onDragEnded={this.props.onDragEnded}
             />
         );
     }

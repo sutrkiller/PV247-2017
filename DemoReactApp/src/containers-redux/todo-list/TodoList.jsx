@@ -8,13 +8,16 @@ import {
     moveItem,
     openCreateNewForm,
     startEditingItem,
-    updateItem
+    updateItem,
+    startDragging,
+    stopDragging
 } from '../../actions/todo-list/actionCreators';
 
 const mapStateToProps = (state) => ({
     list: state.todoApp.itemsList,
     editedItemId: state.todoApp.editedItemId,
     isCreateNewFormOpen: state.todoApp.isCreateNewFormOpen,
+    isDragging: state.todoApp.isDragging,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -26,6 +29,8 @@ const mapDispatchToProps = (dispatch) => ({
     onCancelEditing: () => dispatch(cancelEditingItem()),
     onCreateNewClick: () => dispatch(openCreateNewForm()),
     onCreateNewCancel: () => dispatch(closeCreateNewForm()),
+    onDragStarted: () => dispatch(startDragging()),
+    onDragEnded: () => dispatch(stopDragging())
 });
 
 const enhancer = connect(mapStateToProps, mapDispatchToProps);

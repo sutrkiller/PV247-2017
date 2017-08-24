@@ -5,7 +5,9 @@ import {
     TODO_LIST_ITEM_CREATE,
     TODO_LIST_ITEM_DELETE,
     TODO_LIST_ITEM_MOVE,
+    TODO_LIST_ITEM_START_DRAGGING,
     TODO_LIST_ITEM_START_EDITING,
+    TODO_LIST_ITEM_STOP_DRAGGING,
     TODO_LIST_ITEM_UPDATE,
     TODO_LIST_OPEN_CREATE_NEW_FORM
 } from '../../constants/actionTypes';
@@ -63,3 +65,10 @@ export const closeCreateNewForm = () => ({
     type: TODO_LIST_CLOSE_CREATE_NEW_FORM,
 });
 
+export const startDragging = () => ({
+    type: TODO_LIST_ITEM_START_DRAGGING,
+});
+
+export const stopDragging = () => ({
+    type: TODO_LIST_ITEM_STOP_DRAGGING,
+});
