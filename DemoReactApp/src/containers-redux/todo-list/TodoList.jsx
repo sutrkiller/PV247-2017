@@ -2,9 +2,11 @@ import { connect } from 'react-redux';
 import { TodoList } from '../../containers/todo-list/TodoList.jsx';
 import {
     cancelEditingItem,
+    closeCreateNewForm,
     createNewItem,
     deleteItem,
     moveItem,
+    openCreateNewForm,
     startEditingItem,
     updateItem
 } from '../../actions/todo-list/actionCreators';
@@ -12,6 +14,7 @@ import {
 const mapStateToProps = (state) => ({
     list: state.todoApp.itemsList,
     editedItemId: state.todoApp.editedItemId,
+    isCreateNewFormOpen: state.todoApp.isCreateNewFormOpen,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,6 +24,8 @@ const mapDispatchToProps = (dispatch) => ({
     onMove: (moveItemId, destinationItemId) => dispatch(moveItem(moveItemId, destinationItemId)),
     onStartEditing: (id) => dispatch(startEditingItem(id)),
     onCancelEditing: () => dispatch(cancelEditingItem()),
+    onCreateNewClick: () => dispatch(openCreateNewForm()),
+    onCreateNewCancel: () => dispatch(closeCreateNewForm()),
 });
 
 const enhancer = connect(mapStateToProps, mapDispatchToProps);

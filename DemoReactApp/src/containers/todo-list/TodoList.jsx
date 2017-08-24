@@ -10,19 +10,21 @@ class TodoList extends React.Component {
     static propTypes = {
         list: PropTypes.instanceOf(Immutable.List).isRequired,
         editedItemId: PropTypes.string,
+        isCreateNewFormOpen: PropTypes.bool.isRequired,
         onCreateNew: PropTypes.func.isRequired,
         onUpdate: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
         onMove: PropTypes.func.isRequired,
         onStartEditing: PropTypes.func.isRequired,
         onCancelEditing: PropTypes.func.isRequired,
+        onCreateNewClick: PropTypes.func.isRequired,
+        onCreateNewCancel: PropTypes.func.isRequired,
     };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            createNewFormVisible: false,
             isDragging: false,
         };
     }
@@ -34,23 +36,6 @@ class TodoList extends React.Component {
             localStorage.setItem('todoList', JSON.stringify(nextProps.list.toJS()));
         }
     }
-
-    _showCreateNewForm = () => {
-        this.setState({
-            createNewFormVisible: true,
-        });
-    };
-
-    _hideCreateNewForm = () => {
-        this.setState({
-            createNewFormVisible: false,
-        });
-    };
-
-    _createNewItem = (newItem) => {
-        this.props.onCreateNew(newItem);
-        this.setState(() => ({ createNewFormVisible: false }));
-    };
 
     _itemDragStarted = () => {
         this.setState({
@@ -69,16 +54,16 @@ class TodoList extends React.Component {
             <TodoListComponent
                 list={this.props.list}
                 editedItemId={this.props.editedItemId}
-                createNewFormVisible={this.state.createNewFormVisible}
+                createNewFormVisible={this.props.isCreateNewFormOpen}
                 isDragging={this.state.isDragging}
                 onDelete={this.props.onDelete}
                 onExpand={this.props.onStartEditing}
                 onCancel={this.props.onCancelEditing}
                 onSave={this.props.onUpdate}
                 onReorder={this.props.onMove}
-                onCreateNewClick={this._showCreateNewForm}
-                onCreateCancel={this._hideCreateNewForm}
-                onCreate={this._createNewItem}
+                onCreateNewClick={this.props.onCreateNewClick}
+                onCreateCancel={this.props.onCreateNewCancel}
+                onCreate={this.props.onCreateNew}
                 onDragStarted={this._itemDragStarted}
                 onDragEnded={this._itemDragEnded}
             />

@@ -1,11 +1,13 @@
 import { uuid } from '../../utils/uuidGenerator';
 import {
+    TODO_LIST_CLOSE_CREATE_NEW_FORM,
     TODO_LIST_ITEM_CANCEL_EDITING,
     TODO_LIST_ITEM_CREATE,
     TODO_LIST_ITEM_DELETE,
     TODO_LIST_ITEM_MOVE,
     TODO_LIST_ITEM_START_EDITING,
-    TODO_LIST_ITEM_UPDATE
+    TODO_LIST_ITEM_UPDATE,
+    TODO_LIST_OPEN_CREATE_NEW_FORM
 } from '../../constants/actionTypes';
 
 export const createNewItem = (newItem) => ({
@@ -52,3 +54,12 @@ export const startEditingItem = (id) => ({
 export const cancelEditingItem = () => ({
     type: TODO_LIST_ITEM_CANCEL_EDITING,
 });
+
+export const openCreateNewForm = () => ({
+    type: TODO_LIST_OPEN_CREATE_NEW_FORM,
+});
+
+export const closeCreateNewForm = () => ({
+    type: TODO_LIST_CLOSE_CREATE_NEW_FORM,
+});
+
