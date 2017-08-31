@@ -13,9 +13,10 @@ import { TodoListRedux } from './containers-redux/todo-list/TodoList.jsx';
 import { app } from './reducers/app';
 import { getInitialItems } from './utils/getInitialItems';
 
+const thunk = require('redux-thunk').default;
 const initialState = { todoApp: { itemsList: getInitialItems() } };
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const middleware = [logger];
+const middleware = [thunk, logger];
 
 const store = createStore(app, initialState, composeEnhancers(
     applyMiddleware(...middleware)
