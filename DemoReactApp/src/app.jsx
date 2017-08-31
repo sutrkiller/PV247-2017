@@ -2,7 +2,11 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 import ReactDom from 'react-dom';
 import React from 'react';
-import { applyMiddleware, createStore } from 'redux';
+import {
+    applyMiddleware,
+    compose,
+    createStore
+} from 'redux';
 import logger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { TodoListRedux } from './containers-redux/todo-list/TodoList.jsx';
@@ -10,7 +14,12 @@ import { app } from './reducers/app';
 import { getInitialItems } from './utils/getInitialItems';
 
 const initialState = { todoApp: { itemsList: getInitialItems() } };
-const store = createStore(app, initialState, applyMiddleware(logger));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middleware = [logger];
+
+const store = createStore(app, initialState, composeEnhancers(
+    applyMiddleware(...middleware)
+));
 
 class MyComponent extends React.Component {
     render() {
