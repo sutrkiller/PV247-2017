@@ -11,13 +11,7 @@ class TodoList extends React.Component {
         list: PropTypes.instanceOf(Immutable.List).isRequired,
         editedItemId: PropTypes.string,
         isCreateNewFormOpen: PropTypes.bool.isRequired,
-        isDragging: PropTypes.bool.isRequired,
-        onDelete: PropTypes.func.isRequired,
-        onMove: PropTypes.func.isRequired,
-        onStartEditing: PropTypes.func.isRequired,
         onCreateNewClick: PropTypes.func.isRequired,
-        onDragStarted: PropTypes.func.isRequired,
-        onDragEnded: PropTypes.func.isRequired,
     };
 
     componentWillUpdate(nextProps) {
@@ -34,13 +28,7 @@ class TodoList extends React.Component {
                 list={this.props.list}
                 editedItemId={this.props.editedItemId}
                 createNewFormVisible={this.props.isCreateNewFormOpen}
-                isDragging={this.props.isDragging}
-                onDelete={this.props.onDelete}
-                onExpand={this.props.onStartEditing}
-                onReorder={this.props.onMove}
                 onCreateNewClick={this.props.onCreateNewClick}
-                onDragStarted={this.props.onDragStarted}
-                onDragEnded={this.props.onDragEnded}
             />
         );
     }

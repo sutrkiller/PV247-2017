@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
-import { DragSource, DropTarget } from 'react-dnd';
-import {TodoListBarItem as TodoListBarItemComponent} from '../../components/todo-list/TodoListBarItem.jsx';
+import {
+    DragSource,
+    DropTarget
+} from 'react-dnd';
+import { TodoListBarItem as TodoListBarItemComponent } from '../../components/todo-list/TodoListBarItem.jsx';
 
 const todoItemDragSourceSpecs = {
     beginDrag(props) {

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
-import {TodoListEditedItem} from '../../containers-redux/todo-list/TodoListEditedItem.jsx';
-import {TodoListBarItem} from '../../containers/todo-list/TodoListBarItem.jsx';
+import { TodoListEditedItem } from '../../containers-redux/todo-list/TodoListEditedItem.jsx';
+import { TodoListBarItem } from '../../containers-redux/todo-list/TodoListBarItem.jsx';
 import { TodoListNewItem } from '../../containers-redux/todo-list/TodoListNewItem.jsx';
 import { ButtonRow } from './TodoList.styles';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
@@ -12,24 +12,11 @@ function TodoList(props) {
     let itemElements = props.list.map(item =>
             item.id === props.editedItemId ? (
                 <CSSTransition key={`edited-${item.id}`} timeout={{enter: 250, exit: 150}} classNames="edited-item" >
-                    <TodoListEditedItem
-                        item={item}
-                        submitButtonText="Save"
-                    />
+                    <TodoListEditedItem key={item.id} item={item} submitButtonText="Save" />
                 </CSSTransition>
             ) : (
                 <CSSTransition key={`bar-${item.id}`} timeout={{enter: 150, exit: 0}} classNames="bar-item">
-                    <TodoListBarItem
-                        key={item.id}
-                        item={item}
-                        expandDisabled={!!props.editedItemId || props.isDragging}
-                        reorderDisabled={!!props.editedItemId ||  props.isDragging}
-                        onDelete={() => props.onDelete(item.id)}
-                        onExpand={() => props.onExpand(item.id)}
-                        onReorder={props.onReorder}
-                        onDragStarted={props.onDragStarted}
-                        onDragEnded={props.onDragEnded}
-                    />
+                    <TodoListBarItem key={item.id} item={item} />
                 </CSSTransition>
             )
     );
@@ -72,12 +59,7 @@ TodoList.propTypes = {
     editedItemId: PropTypes.string,
     createNewFormVisible: PropTypes.bool,
     isDragging: PropTypes.bool,
-    onDelete: PropTypes.func.isRequired,
-    onExpand: PropTypes.func.isRequired,
-    onReorder: PropTypes.func.isRequired,
     onCreateNewClick: PropTypes.func.isRequired,
-    onDragStarted: PropTypes.func.isRequired,
-    onDragEnded: PropTypes.func.isRequired
 };
 
 export { TodoList };
