@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
-import {TodoListEditedItem} from '../../containers/todo-list/TodoListEditedItem.jsx';
+import {TodoListEditedItem} from '../../containers-redux/todo-list/TodoListEditedItem.jsx';
 import {TodoListBarItem} from '../../containers/todo-list/TodoListBarItem.jsx';
 import { TodoListNewItem } from './TodoListNewItem.jsx';
 import { ButtonRow } from './TodoList.styles';
@@ -14,8 +14,6 @@ function TodoList(props) {
                 <CSSTransition key={`edited-${item.id}`} timeout={{enter: 250, exit: 150}} classNames="edited-item" >
                     <TodoListEditedItem
                         item={item}
-                        onCancel={props.onCancel}
-                        onSubmit={props.onSave}
                         submitButtonText="Save"
                     />
                 </CSSTransition>
@@ -76,8 +74,6 @@ TodoList.propTypes = {
     isDragging: PropTypes.bool,
     onDelete: PropTypes.func.isRequired,
     onExpand: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
     onReorder: PropTypes.func.isRequired,
     onCreateNewClick: PropTypes.func.isRequired,
     onCreateCancel: PropTypes.func.isRequired,

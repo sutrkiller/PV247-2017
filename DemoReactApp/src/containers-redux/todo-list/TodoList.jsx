@@ -1,14 +1,12 @@
 import { connect } from 'react-redux';
 import { TodoList } from '../../containers/todo-list/TodoList.jsx';
 import {
-    cancelEditingItem,
     closeCreateNewForm,
     createNewItem,
     deleteItem,
     moveItem,
     openCreateNewForm,
     startEditingItem,
-    updateItem,
     startDragging,
     stopDragging
 } from '../../actions/todo-list/actionCreators';
@@ -22,11 +20,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     onCreateNew: (item) => dispatch(createNewItem(item)),
-    onUpdate: (item) => dispatch(updateItem(item)),
     onDelete: (id) => dispatch(deleteItem(id)),
     onMove: (moveItemId, destinationItemId) => dispatch(moveItem(moveItemId, destinationItemId)),
     onStartEditing: (id) => dispatch(startEditingItem(id)),
-    onCancelEditing: () => dispatch(cancelEditingItem()),
     onCreateNewClick: () => dispatch(openCreateNewForm()),
     onCreateNewCancel: () => dispatch(closeCreateNewForm()),
     onDragStarted: () => dispatch(startDragging()),

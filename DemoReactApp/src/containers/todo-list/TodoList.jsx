@@ -13,11 +13,9 @@ class TodoList extends React.Component {
         isCreateNewFormOpen: PropTypes.bool.isRequired,
         isDragging: PropTypes.bool.isRequired,
         onCreateNew: PropTypes.func.isRequired,
-        onUpdate: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
         onMove: PropTypes.func.isRequired,
         onStartEditing: PropTypes.func.isRequired,
-        onCancelEditing: PropTypes.func.isRequired,
         onCreateNewClick: PropTypes.func.isRequired,
         onCreateNewCancel: PropTypes.func.isRequired,
         onDragStarted: PropTypes.func.isRequired,
@@ -41,8 +39,6 @@ class TodoList extends React.Component {
                 isDragging={this.props.isDragging}
                 onDelete={this.props.onDelete}
                 onExpand={this.props.onStartEditing}
-                onCancel={this.props.onCancelEditing}
-                onSave={this.props.onUpdate}
                 onReorder={this.props.onMove}
                 onCreateNewClick={this.props.onCreateNewClick}
                 onCreateCancel={this.props.onCreateNewCancel}
