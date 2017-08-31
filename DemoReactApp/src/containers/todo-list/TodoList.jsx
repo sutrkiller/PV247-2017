@@ -12,12 +12,10 @@ class TodoList extends React.Component {
         editedItemId: PropTypes.string,
         isCreateNewFormOpen: PropTypes.bool.isRequired,
         isDragging: PropTypes.bool.isRequired,
-        onCreateNew: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
         onMove: PropTypes.func.isRequired,
         onStartEditing: PropTypes.func.isRequired,
         onCreateNewClick: PropTypes.func.isRequired,
-        onCreateNewCancel: PropTypes.func.isRequired,
         onDragStarted: PropTypes.func.isRequired,
         onDragEnded: PropTypes.func.isRequired,
     };
@@ -41,8 +39,6 @@ class TodoList extends React.Component {
                 onExpand={this.props.onStartEditing}
                 onReorder={this.props.onMove}
                 onCreateNewClick={this.props.onCreateNewClick}
-                onCreateCancel={this.props.onCreateNewCancel}
-                onCreate={this.props.onCreateNew}
                 onDragStarted={this.props.onDragStarted}
                 onDragEnded={this.props.onDragEnded}
             />

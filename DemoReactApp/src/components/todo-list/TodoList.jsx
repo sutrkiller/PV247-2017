@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import {TodoListEditedItem} from '../../containers-redux/todo-list/TodoListEditedItem.jsx';
 import {TodoListBarItem} from '../../containers/todo-list/TodoListBarItem.jsx';
-import { TodoListNewItem } from './TodoListNewItem.jsx';
+import { TodoListNewItem } from '../../containers-redux/todo-list/TodoListNewItem.jsx';
 import { ButtonRow } from './TodoList.styles';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import CSSTransition from 'react-transition-group/CSSTransition';
@@ -37,7 +37,7 @@ function TodoList(props) {
     if (props.createNewFormVisible) {
         itemElements = itemElements.push((
             <CSSTransition key="new-item" timeout={{ enter: 350, exit: 150}} classNames="new-item">
-                <TodoListNewItem onCancel={props.onCreateCancel} onCreate={props.onCreate} />
+                <TodoListNewItem />
             </CSSTransition>
         ));
     }
@@ -76,8 +76,6 @@ TodoList.propTypes = {
     onExpand: PropTypes.func.isRequired,
     onReorder: PropTypes.func.isRequired,
     onCreateNewClick: PropTypes.func.isRequired,
-    onCreateCancel: PropTypes.func.isRequired,
-    onCreate: PropTypes.func.isRequired,
     onDragStarted: PropTypes.func.isRequired,
     onDragEnded: PropTypes.func.isRequired
 };
