@@ -9,7 +9,7 @@ import {
 } from 'redux';
 import logger from 'redux-logger';
 import { Provider } from 'react-redux';
-import { TodoListRedux } from './containers-redux/todo-list/TodoList.jsx';
+import { TodoApp } from './components/todo-list/TodoApp.jsx';
 import { app } from './reducers/app';
 import { getInitialItems } from './utils/getInitialItems';
 
@@ -22,34 +22,8 @@ const store = createStore(app, initialState, composeEnhancers(
     applyMiddleware(...middleware)
 ));
 
-class MyComponent extends React.Component {
-    render() {
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-xs-12">
-                        <h1>TODO List</h1>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <TodoListRedux />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-12">
-                        <h5>PV247{' '}
-                            <small>2017</small>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
 ReactDom.render(
     <Provider store={store}>
-        <MyComponent />
+        <TodoApp />
     </Provider>,
     document.getElementById('app'));
