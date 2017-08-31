@@ -11,14 +11,13 @@ class TodoList extends React.Component {
         list: PropTypes.instanceOf(Immutable.List).isRequired,
         editedItemId: PropTypes.string,
         isCreateNewFormOpen: PropTypes.bool.isRequired,
+        save: PropTypes.func.isRequired,
         onCreateNewClick: PropTypes.func.isRequired,
     };
 
     componentWillUpdate(nextProps) {
         if (this.props.list !== nextProps.list) {
-            // note that this should be done in action creator instead
-            // we will handle this in following commits
-            localStorage.setItem('todoList', JSON.stringify(nextProps.list.toJS()));
+            this.props.save();
         }
     }
 

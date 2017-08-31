@@ -9,7 +9,9 @@ import {
     TODO_LIST_ITEM_START_EDITING,
     TODO_LIST_ITEM_STOP_DRAGGING,
     TODO_LIST_ITEM_UPDATE,
-    TODO_LIST_OPEN_CREATE_NEW_FORM
+    TODO_LIST_OPEN_CREATE_NEW_FORM,
+    TODO_LIST_SAVING_FINISHED,
+    TODO_LIST_SAVING_STARTED,
 } from '../../constants/actionTypes';
 
 export const createNewItem = (newItem) => ({
@@ -71,4 +73,12 @@ export const startDragging = () => ({
 
 export const stopDragging = () => ({
     type: TODO_LIST_ITEM_STOP_DRAGGING,
+});
+
+export const savingStarted = () => ({
+    type: TODO_LIST_SAVING_STARTED,
+});
+
+export const savingFinished = () => ({
+    type: TODO_LIST_SAVING_FINISHED,
 });
