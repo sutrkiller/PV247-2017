@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import Immutable from 'immutable';
 import { TodoListEditedItem } from '../../containers-redux/todo-list/TodoListEditedItem.jsx';
 import { TodoListBarItem } from '../../containers-redux/todo-list/TodoListBarItem.jsx';
@@ -62,4 +64,5 @@ TodoList.propTypes = {
     onCreateNewClick: PropTypes.func.isRequired,
 };
 
-export { TodoList };
+const DndTodoList = DragDropContext(HTML5Backend)(TodoList);
+export { DndTodoList as TodoList };

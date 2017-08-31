@@ -1,4 +1,5 @@
 import React from 'react';
+import { SavingStatus } from '../../containers-redux/todo-list/SavingStatus.jsx';
 import { TodoListRedux } from '../../containers-redux/todo-list/TodoList.jsx';
 
 export class TodoApp extends React.Component {
@@ -8,6 +9,9 @@ export class TodoApp extends React.Component {
                 <div className="row">
                     <div className="col-xs-12">
                         <h1>TODO List</h1>
+                    </div>
+                    <div className="col-sm-9 col-md-6">
+                        <SavingStatus />
                     </div>
                 </div>
                 <div className="row">

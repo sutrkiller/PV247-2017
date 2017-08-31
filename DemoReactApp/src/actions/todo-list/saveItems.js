@@ -10,5 +10,5 @@ export const saveItems = () =>
             localStorage.setItem('todoList', JSON.stringify(getState().todoApp.itemsList.toJS()));
             dispatch(savingFinished());
 
-        }, 500);
+        }, 1000);
     };
