@@ -3,7 +3,7 @@ import { SavingStatus } from '../../components/todo-list/SavingStatus.jsx';
 import { saveItems } from '../../actions/todo-list/saveItems';
 
 const mapStateToProps = (state) => ({
-    list: state.todoApp.itemsList,
+    watchedEntity: state.todoApp.items,
     isSaving: state.todoApp.isSaving,
 });
 

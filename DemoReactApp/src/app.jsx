@@ -11,14 +11,13 @@ import logger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { TodoApp } from './components/todo-list/TodoApp.jsx';
 import { app } from './reducers/app';
-import { getInitialItems } from './utils/getInitialItems';
+import { getInitialState} from './utils/geInitialState';
 
 const thunk = require('redux-thunk').default;
-const initialState = { todoApp: { itemsList: getInitialItems() } };
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [thunk, logger];
 
-const store = createStore(app, initialState, composeEnhancers(
+const store = createStore(app, getInitialState(), composeEnhancers(
     applyMiddleware(...middleware)
 ));
 

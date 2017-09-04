@@ -1,3 +1,4 @@
+import {items} from '../../constants/localStorageKeys';
 import {
     savingFinished,
     savingStarted
@@ -7,8 +8,9 @@ export const saveItems = () =>
     (dispatch, getState) => {
         dispatch(savingStarted());
         setTimeout(() => {
-            localStorage.setItem('todoList', JSON.stringify(getState().todoApp.itemsList.toJS()));
-            dispatch(savingFinished());
+            localStorage.setItem(items.allIds, JSON.stringify(getState().todoApp.items.allIds.toJS()));
+            localStorage.setItem(items.byId, JSON.stringify(getState().todoApp.items.byId.toJS()));
 
+            dispatch(savingFinished());
         }, 1000);
     };

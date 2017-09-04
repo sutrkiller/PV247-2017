@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SavingIcon } from './SavingStatus.styles.jsx';
@@ -6,13 +5,13 @@ import { SavingIcon } from './SavingStatus.styles.jsx';
 export class SavingStatus extends React.PureComponent {
 
     static propTypes = {
-        list: PropTypes.instanceOf(Immutable.List).isRequired,
+        watchedEntity: PropTypes.object.isRequired,
         isSaving: PropTypes.bool.isRequired,
         save: PropTypes.func.isRequired,
     };
 
     componentWillUpdate(nextProps) {
-        if (this.props.list !== nextProps.list) {
+        if (this.props.watchedEntity !== nextProps.watchedEntity) {
             this.props.save();
         }
     }

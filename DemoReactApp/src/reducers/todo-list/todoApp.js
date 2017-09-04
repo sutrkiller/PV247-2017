@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import { itemsList } from './itemsList';
 import { editedItemId } from './editedItemId';
 import { isCreateNewFormOpen } from './isCreateNewFormOpen';
 import { isDragging } from './isDragging';
 import { isSaving } from './isSaving';
+import { items } from './items/items';
 
 export const todoApp = combineReducers({
-    itemsList,
+    items,
     editedItemId,
     isCreateNewFormOpen,
     isDragging,
