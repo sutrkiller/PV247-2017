@@ -1,13 +1,13 @@
+import memoizee from 'memoizee';
 import { connect } from 'react-redux';
 import { TodoList } from '../../components/todo-list/TodoList.jsx';
 import { openCreateNewForm } from '../../actions/todo-list/actionCreators';
 
-// this should be memoized, because it creates a new instance
-// with every change of store (every call of the mapping function)
-export const getListOfItems = (items) => items.allIds.map(id => items.byId.get(id)).toList();
+const getListOfItems = (items) => items.allIds.map(id => items.byId.get(id)).toList();
+const getListOfItemsMemoized = memoizee(getListOfItems);
 
 const mapStateToProps = (state) => ({
-    list: getListOfItems(state.todoApp.items),
+    list: getListOfItemsMemoized(state.todoApp.items),
     editedItemId: state.todoApp.editedItemId,
     createNewFormVisible: state.todoApp.isCreateNewFormOpen,
 });
