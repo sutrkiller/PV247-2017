@@ -9,7 +9,9 @@ export const isSaving = (prevState = false, action) => {
             return true;
 
         case TODO_LIST_SAVING_FINISHED:
-        default:
             return false;
+
+        default:
+            return prevState;
     }
 };

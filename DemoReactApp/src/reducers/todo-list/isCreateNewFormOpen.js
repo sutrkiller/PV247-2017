@@ -11,8 +11,10 @@ export const isCreateNewFormOpen = (prevState = false, action) => {
 
         case TODO_LIST_ITEM_CREATE:
         case TODO_LIST_CLOSE_CREATE_NEW_FORM:
-        default:
             return false;
+
+        default:
+            return prevState;
 
     }
 };

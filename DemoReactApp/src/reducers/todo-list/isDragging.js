@@ -9,7 +9,9 @@ export const isDragging = (prevState = false, action) => {
             return true;
 
         case TODO_LIST_ITEM_STOP_DRAGGING:
-        default:
             return false;
+
+        default:
+            return prevState;
     }
 };
