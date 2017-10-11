@@ -10,7 +10,7 @@ import {
 } from 'redux';
 import logger from 'redux-logger';
 import { Provider } from 'react-redux';
-import { TodoApp } from './components/todo-list/TodoApp.jsx';
+import { TodoApp } from './components/TodoApp.jsx';
 import { app } from './reducers/app';
 import { getInitialState} from './utils/geInitialState';
 
