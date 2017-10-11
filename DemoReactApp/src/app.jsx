@@ -10,7 +10,7 @@ import {
 } from 'redux';
 import logger from 'redux-logger';
 import { Provider } from 'react-redux';
-import { TodoApp } from './components/TodoApp.jsx';
+import { Layout } from './components/Layout.jsx';
 import { app } from './reducers/app';
 import { getInitialState} from './utils/geInitialState';
 
@@ -24,6 +24,6 @@ const store = createStore(app, getInitialState(), composeEnhancers(
 
 ReactDom.render(
     <Provider store={store}>
-        <TodoApp />
+        <Layout />
     </Provider>,
     document.getElementById('app'));

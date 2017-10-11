@@ -3,7 +3,7 @@ import { Tabs } from './app/Tabs.jsx';
 import { TodoListRedux } from '../containers-redux/todo-list/TodoList.jsx';
 import { SavingStatus } from '../containers-redux/todo-list/SavingStatus.jsx';
 
-const TodoApp = () => (
+const Layout = () => (
     <div className="container">
         <div className="row form-group">
             <div className="col-xs-12">
@@ -29,4 +29,4 @@ const TodoApp = () => (
     </div>
 );
 
-export { TodoApp };
+export { Layout };
