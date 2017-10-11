@@ -10,8 +10,8 @@ import {
     TODO_LIST_ITEM_STOP_DRAGGING,
     TODO_LIST_ITEM_UPDATE,
     TODO_LIST_OPEN_CREATE_NEW_FORM,
-    TODO_LIST_SAVING_FINISHED,
-    TODO_LIST_SAVING_STARTED,
+    SHARED_SAVING_FINISHED,
+    SHARED_SAVING_STARTED,
 } from '../../constants/actionTypes';
 
 export const createNewItem = (newItem) => ({
@@ -76,9 +76,9 @@ export const stopDragging = () => ({
 });
 
 export const savingStarted = () => ({
-    type: TODO_LIST_SAVING_STARTED,
+    type: SHARED_SAVING_STARTED,
 });
 
 export const savingFinished = () => ({
-    type: TODO_LIST_SAVING_FINISHED,
+    type: SHARED_SAVING_FINISHED,
 });

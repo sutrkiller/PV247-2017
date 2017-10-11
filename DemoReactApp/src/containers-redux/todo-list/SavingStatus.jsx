@@ -4,7 +4,7 @@ import { saveItems } from '../../actions/todo-list/saveItems';
 
 const mapStateToProps = (state) => ({
     watchedEntity: state.todoApp.items,
-    isSaving: state.todoApp.isSaving,
+    isSaving: state.shared.isSaving,
 });
 
 const mapDispatchToProps = (dispatch) => ({

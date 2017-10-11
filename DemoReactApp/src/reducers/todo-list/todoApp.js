@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { editedItemId } from './editedItemId';
 import { isCreateNewFormOpen } from './isCreateNewFormOpen';
 import { isDragging } from './isDragging';
-import { isSaving } from './isSaving';
 import { items } from './items/items';
 
 export const todoApp = combineReducers({
@@ -10,5 +9,4 @@ export const todoApp = combineReducers({
     editedItemId,
     isCreateNewFormOpen,
     isDragging,
-    isSaving
 });
