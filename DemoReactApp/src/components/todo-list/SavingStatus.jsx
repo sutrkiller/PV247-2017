@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { SavingIcon } from './SavingStatus.styles.jsx';
+import { SavingIcon, StatusPane } from './SavingStatus.styles.jsx';
 
 export class SavingStatus extends React.PureComponent {
 
@@ -23,9 +23,9 @@ export class SavingStatus extends React.PureComponent {
             : <i className="glyphicon glyphicon-check" alt="Saved"/>;
 
         return (
-            <span className="pull-right">
+            <StatusPane className="navbar-right">
                 {icon}{'\u00A0'}{text}
-            </span>
+            </StatusPane>
         );
     }
 }

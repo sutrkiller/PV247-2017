@@ -56,7 +56,7 @@ class TodoList extends React.PureComponent {
         }
 
         return (
-            <div>
+            <div className="col-xs-12">
                 <div className="row">
                     <div className="col-xs-12 col-sm-9 col-md-6">
                         <TransitionGroup>

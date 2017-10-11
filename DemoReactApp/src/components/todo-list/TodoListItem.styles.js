@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ItemPane = styled.div`
     border-radius: 2px;
     box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+    margin-left: 1px;
     overflow: hidden;
     
     & + & {
