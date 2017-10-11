@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Tabs } from './app/Tabs.jsx';
-import { TodoListRedux } from '../containers-redux/todo-list/TodoList.jsx';
+import { Content } from './app/Content.jsx';
 import { SavingStatus } from '../containers-redux/todo-list/SavingStatus.jsx';
 
 const Layout = () => (
@@ -17,7 +17,7 @@ const Layout = () => (
             </div>
         </div>
         <div className="row form-group">
-            <TodoListRedux />
+            <Content />
         </div>
         <div className="row">
             <div className="col-xs-12">

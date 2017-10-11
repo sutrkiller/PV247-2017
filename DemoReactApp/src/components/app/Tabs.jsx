@@ -1,13 +1,11 @@
 import * as React from 'react';
+import * as routes from '../../constants/routes';
+import { TabLink } from './TabLink.jsx';
 
 const Tabs = () => (
     <ul className="nav nav-tabs nav-justified">
-        <li role="presentation" className="active">
-            <a href="">Items</a>
-        </li>
-        <li role="presentation">
-            <a href="">Profile</a>
-        </li>
+        <TabLink exact to={routes.ROOT}>Items</TabLink>
+        <TabLink to={routes.PROFILE}>Profile</TabLink>
     </ul>
 );
 

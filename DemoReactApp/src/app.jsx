@@ -13,8 +13,9 @@ import { Provider } from 'react-redux';
 import { Layout } from './components/Layout.jsx';
 import { app } from './reducers/app';
 import { getInitialState} from './utils/geInitialState';
-
+import { HashRouter as Router } from 'react-router-dom';
 const thunk = require('redux-thunk').default;
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = [thunk, logger];
 
@@ -24,6 +25,8 @@ const store = createStore(app, getInitialState(), composeEnhancers(
 
 ReactDom.render(
     <Provider store={store}>
-        <Layout />
+        <Router>
+            <Layout />
+        </Router>
     </Provider>,
     document.getElementById('app'));
