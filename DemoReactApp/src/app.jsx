@@ -3,30 +3,19 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 import ReactDom from 'react-dom';
 import React from 'react';
-import {
-    applyMiddleware,
-    compose,
-    createStore
-} from 'redux';
-import logger from 'redux-logger';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import { Layout } from './components/Layout.jsx';
-import { app } from './reducers/app';
-import { getInitialState} from './utils/geInitialState';
-import { HashRouter as Router } from 'react-router-dom';
-const thunk = require('redux-thunk').default;
+import { createHistory } from './utils/createHistory';
+import { createStore } from './utils/createStore';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const middleware = [thunk, logger];
-
-const store = createStore(app, getInitialState(), composeEnhancers(
-    applyMiddleware(...middleware)
-));
+const history = createHistory();
+const store = createStore(history);
 
 ReactDom.render(
     <Provider store={store}>
-        <Router>
+        <ConnectedRouter history={history}>
             <Layout />
-        </Router>
+        </ConnectedRouter>
     </Provider>,
     document.getElementById('app'));
