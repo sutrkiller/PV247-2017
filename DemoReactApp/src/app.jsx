@@ -1,3 +1,4 @@
+require.context('../static/', true);
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 import ReactDom from 'react-dom';

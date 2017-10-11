@@ -74,6 +74,16 @@ module.exports = {
                     },
                 }
             },
+            {
+                test: /\.(html|jpg|png|ico)/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[path][name].[ext]',
+                        context: 'static',
+                    }
+                },
+            }
         ]
     },
     devtool: env === productionEnv ? '' : 'source-map',
