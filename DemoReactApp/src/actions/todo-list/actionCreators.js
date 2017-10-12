@@ -1,21 +1,8 @@
 import { uuid } from '../../utils/uuidGenerator';
-import {
-    TODO_LIST_CLOSE_CREATE_NEW_FORM,
-    TODO_LIST_ITEM_CANCEL_EDITING,
-    TODO_LIST_ITEM_CREATE,
-    TODO_LIST_ITEM_DELETE,
-    TODO_LIST_ITEM_MOVE,
-    TODO_LIST_ITEM_START_DRAGGING,
-    TODO_LIST_ITEM_START_EDITING,
-    TODO_LIST_ITEM_STOP_DRAGGING,
-    TODO_LIST_ITEM_UPDATE,
-    TODO_LIST_OPEN_CREATE_NEW_FORM,
-    SHARED_SAVING_FINISHED,
-    SHARED_SAVING_STARTED,
-} from '../../constants/actionTypes';
+import * as actionTypes from '../../constants/actionTypes';
 
 export const createNewItem = (newItem) => ({
-    type: TODO_LIST_ITEM_CREATE,
+    type: actionTypes.TODO_LIST_ITEM_CREATE,
     payload: {
         item: {
             ...newItem,
@@ -27,21 +14,21 @@ export const createNewItem = (newItem) => ({
 });
 
 export const updateItem = (item) => ({
-    type: TODO_LIST_ITEM_UPDATE,
+    type: actionTypes.TODO_LIST_ITEM_UPDATE,
     payload: {
         item,
     }
 });
 
 export const deleteItem = (id) => ({
-    type: TODO_LIST_ITEM_DELETE,
+    type: actionTypes.TODO_LIST_ITEM_DELETE,
     payload: {
         id,
     }
 });
 
 export const moveItem = (moveItemId, destinationItemId) => ({
-    type: TODO_LIST_ITEM_MOVE,
+    type: actionTypes.TODO_LIST_ITEM_MOVE,
     payload: {
         moveItemId,
         destinationItemId,
@@ -49,36 +36,36 @@ export const moveItem = (moveItemId, destinationItemId) => ({
 });
 
 export const startEditingItem = (id) => ({
-    type: TODO_LIST_ITEM_START_EDITING,
+    type: actionTypes.TODO_LIST_ITEM_START_EDITING,
     payload: {
         id,
     }
 });
 
 export const cancelEditingItem = () => ({
-    type: TODO_LIST_ITEM_CANCEL_EDITING,
+    type: actionTypes.TODO_LIST_ITEM_CANCEL_EDITING,
 });
 
 export const openCreateNewForm = () => ({
-    type: TODO_LIST_OPEN_CREATE_NEW_FORM,
+    type: actionTypes.TODO_LIST_OPEN_CREATE_NEW_FORM,
 });
 
 export const closeCreateNewForm = () => ({
-    type: TODO_LIST_CLOSE_CREATE_NEW_FORM,
+    type: actionTypes.TODO_LIST_CLOSE_CREATE_NEW_FORM,
 });
 
 export const startDragging = () => ({
-    type: TODO_LIST_ITEM_START_DRAGGING,
+    type: actionTypes.TODO_LIST_ITEM_START_DRAGGING,
 });
 
 export const stopDragging = () => ({
-    type: TODO_LIST_ITEM_STOP_DRAGGING,
+    type: actionTypes.TODO_LIST_ITEM_STOP_DRAGGING,
 });
 
 export const savingStarted = () => ({
-    type: SHARED_SAVING_STARTED,
+    type: actionTypes.SHARED_SAVING_STARTED,
 });
 
 export const savingFinished = () => ({
-    type: SHARED_SAVING_FINISHED,
+    type: actionTypes.SHARED_SAVING_FINISHED,
 });

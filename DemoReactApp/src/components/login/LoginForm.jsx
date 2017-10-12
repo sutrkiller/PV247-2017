@@ -4,7 +4,7 @@ import { uuid } from '../../utils/uuidGenerator';
 
 class LoginForm extends React.PureComponent {
     static propTypes = {
-        onSumbit: PropTypes.func.isRequired,
+        onSubmit: PropTypes.func.isRequired,
     };
 
     componentWillMount() {
@@ -18,15 +18,32 @@ class LoginForm extends React.PureComponent {
         return (
             <form>
                 <div className="form-group">
-                    <label className="sr-only" htmlFor={loginId}>E-mail</label>
+                    <label
+                        className="sr-only"
+                        htmlFor={loginId}
+                    >
+                        E-mail
+                    </label>
                     <div className="input-group">
                         <div className="input-group-addon">
                             <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                         </div>
-                        <input className="form-control" type="email" id={loginId} placeholder="undefined@null.zero" readOnly />
+                        <input
+                            className="form-control"
+                            type="email"
+                            id={loginId}
+                            placeholder="undefined@null.zero"
+                            readOnly
+                        />
                     </div>
                 </div>
-                <button className="btn btn-success btn-lg" onClick={this.props.onSumbit}>Come on in</button>
+                <button
+                    type="button"
+                    className="btn btn-success btn-lg"
+                    onClick={this.props.onSubmit}
+                >
+                    Come on in
+                </button>
             </form>
         );
     }

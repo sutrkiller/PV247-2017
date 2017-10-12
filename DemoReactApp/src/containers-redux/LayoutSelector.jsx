@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { LayoutSelector } from '../components/LayoutSelector.jsx';
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: !!state,
+    isAuthenticated: !!state.shared.token,
     location: state.router.location,
 });
 
