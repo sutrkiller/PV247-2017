@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Tabs } from './app/Tabs.jsx';
-import { Content } from './app/Content.jsx';
-import { SavingStatus } from '../containers-redux/todo-list/SavingStatus.jsx';
+import { Tabs } from './Tabs.jsx';
+import { Content } from './Content.jsx';
+import { SavingStatus } from '../../containers-redux/todo-list/SavingStatus.jsx';
 
-const Layout = () => (
+const ContentLayout = () => (
     <div className="container">
         <div className="row form-group">
             <div className="col-xs-12">
@@ -29,4 +29,4 @@ const Layout = () => (
     </div>
 );
 
-export { Layout };
+export { ContentLayout };
