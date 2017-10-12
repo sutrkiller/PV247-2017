@@ -1,31 +1,36 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { Field } from 'redux-form';
 import { Input } from './Input.jsx';
 
-const Details = () => (
+const Details = ({ handleSubmit }) => (
     <div className="panel panel-default">
         <div className="panel-body">
-            <form>
-                <Input
+            <form onSubmit={handleSubmit}>
+                <Field
                     type="email"
                     placeholder="undefined@null.zero"
                     screenReaderName="E-mail"
                     glyphiconClassName="glyphicon-envelope"
-                    input={{}}
                     readOnly
+                    name="email"
+                    component={Input}
                 />
-                <Input
+                <Field
                     type="text"
                     placeholder="David Allen"
                     screenReaderName="Full name"
                     glyphiconClassName="glyphicon-user"
-                    input={{}}
+                    name="fullName"
+                    component={Input}
                 />
-                <Input
+                <Field
                     type="tel"
                     placeholder="0118 999 881 999 119 7253"
                     screenReaderName="Phone number"
                     glyphiconClassName="glyphicon-phone"
-                    input={{}}
+                    name="phone"
+                    component={Input}
                 />
 
                 <button
@@ -38,5 +43,9 @@ const Details = () => (
         </div>
     </div>
 );
+
+Details.propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+};
 
 export { Details };

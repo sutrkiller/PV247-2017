@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Avatar } from './Avatar.jsx';
-import { Details } from './Details.jsx';
+import { Details } from '../../containers-redux/profile/Details.jsx';
 
 const Profile = () => [
     <div className="col-xs-12 col-md-2" key="picture">
