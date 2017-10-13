@@ -1,6 +1,7 @@
 import {
     SHARED_RECEIVE_TOKEN,
     SHARED_INVALIDATE_TOKEN,
+    SHARED_AUTHENTICATION_FAILED,
 } from '../../constants/actionTypes';
 
 export const token = (prevState = null, action) => {
@@ -8,6 +9,7 @@ export const token = (prevState = null, action) => {
         case SHARED_RECEIVE_TOKEN:
             return action.payload.token;
 
+        case SHARED_AUTHENTICATION_FAILED:
         case SHARED_INVALIDATE_TOKEN:
             return null;
 
