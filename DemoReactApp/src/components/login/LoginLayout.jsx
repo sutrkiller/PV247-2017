@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { LoginForm } from '../../containers-redux/login/LoginForm.jsx';
 import * as routes from '../../constants/routes';
+import { HeadInHelmet } from '../../containers-redux/app/HeadInHelment.jsx';
 
 const LoginLayout = ({ from }) => {
     const originalLocation = from || { pathname: routes.ROOT };
 
     return [
+        <HeadInHelmet key="head" />,
         <div className="panel panel-warning" key="cookies">
             <div className="panel-heading text-center">
                 <h5>

@@ -3,9 +3,11 @@ import { Tabs } from './Tabs.jsx';
 import { Content } from './Content.jsx';
 import { SavingStatus } from '../../containers-redux/todo-list/SavingStatus.jsx';
 import { LogoutButton } from '../../containers-redux/app/LogoutButton.jsx';
+import { HeadInHelmet } from '../../containers-redux/app/HeadInHelment.jsx';
 
 const ContentLayout = () => (
     <div className="container">
+        <HeadInHelmet />
         <div className="row">
             <div className="col-xs-5">
                 <h1>TODO List</h1>
