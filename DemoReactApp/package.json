@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "classnames": "^2.2.5",
     "connected-react-router": "^4.2.3",
     "history": "^4.7.2",
     "immutable": "^3.8.1",

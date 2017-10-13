@@ -2,8 +2,14 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 import { Input } from './Input.jsx';
+import {
+    validateNonEmptyness,
+    validatePhone
+} from '../../utils/validation';
 
-const Details = ({ handleSubmit }) => (
+const validateFullName = validateNonEmptyness('full name');
+
+const Details = ({ handleSubmit, valid, anyTouched }) => (
     <div className="panel panel-default">
         <div className="panel-body">
             <form onSubmit={handleSubmit}>
@@ -13,6 +19,7 @@ const Details = ({ handleSubmit }) => (
                     screenReaderName="E-mail"
                     glyphiconClassName="glyphicon-envelope"
                     readOnly
+                    required
                     name="email"
                     component={Input}
                 />
@@ -22,7 +29,9 @@ const Details = ({ handleSubmit }) => (
                     screenReaderName="Full name"
                     glyphiconClassName="glyphicon-user"
                     name="fullName"
+                    required
                     component={Input}
+                    validate={validateFullName}
                 />
                 <Field
                     type="tel"
@@ -31,11 +40,13 @@ const Details = ({ handleSubmit }) => (
                     glyphiconClassName="glyphicon-phone"
                     name="phone"
                     component={Input}
+                    validate={validatePhone}
                 />
 
                 <button
                     type="submit"
                     className="btn btn-primary btn-block"
+                    disabled={anyTouched && !valid}
                 >
                     Update details
                 </button>
@@ -45,6 +56,8 @@ const Details = ({ handleSubmit }) => (
 );
 
 Details.propTypes = {
+    valid: PropTypes.bool.isRequired,
+    anyTouched: PropTypes.bool.isRequired,
     handleSubmit: PropTypes.func.isRequired,
 };
 
