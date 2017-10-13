@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { SavingIcon, StatusPane } from './SavingStatus.styles.jsx';
+import { StatusPane } from './SavingStatus.styles.jsx';
+import { SavingSpinner } from '../app/SavingSpinner.jsx';
 
 export class SavingStatus extends React.PureComponent {
 
@@ -19,7 +20,7 @@ export class SavingStatus extends React.PureComponent {
     render() {
         const text = this.props.isSaving ? 'Saving' : 'Saved';
         const icon = this.props.isSaving
-            ? <SavingIcon alt="saving">_</SavingIcon>
+            ? <SavingSpinner />
             : <i className="glyphicon glyphicon-check" alt="Saved"/>;
 
         return (
